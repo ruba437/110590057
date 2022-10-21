@@ -1,81 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.container {
+  position: relative;
+  width: 50%;
+}
 
-  <style>
-  .center {
-    margin: auto;
-    width: 20%;
-    padding: 10px;
-    text-align: left;
-  }
-  body {
-    font-family: Arial;
-    color: black;
-  }
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
 
-  .split {
-  height: 100%;
-  width: 75%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
-  }
-
-  .left {
-  left: 50;
-  }
-
-  .right {
-  right: 0;
-  }
-
-  .lcentered {
+.middle {
+  transition: .5s ease;
+  opacity: 0;
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 85%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   text-align: center;
-  }
+}
+
+.container:hover .image {
+  opacity: 1;
+}
+
+.container:hover .middle {
+  opacity: 0.5;
+}
+
+.text {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+img {
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
-
-  .centered img {
-  width: 150px;
-  }
-  </style>
+</style>
 </head>
+<body>
 
-<body style="background-color:lightgray">
-  <div class="split left">
-  <div class="lcentered">
-    <a href="https://www.google.com/"><img src="/Users/yoyo/Downloads/photo.jpg" width="300" height="300"></a>
-    <h1>Tsai-Yun-You</h1>
-    <p><a href="mailto:110590057@ntut.org.tw">110590057@ntut.org.tw</a></p>
+<div class="container">
+  <img src="photo.png" alt="photo" usemap="#photomap" class="image" style="width:250px">
+  <div class="middle">
+    <div class="text">I am Tsai-Yun-You</div>
   </div>
 </div>
 
-<div class="split right">
-  <div class="centered">
-    <h2>Biograph</h2>
-    <p>I am Tsai-Yun-You. Yoyo is my English name. I am 19 years old, studying in National Taipei University of Technology. I come from middle-class family. My father works in a walk-in freezer and my mother works in a bank. I am the only child in the family;
-    Throughout my academic years, I not only get good grades but also am very active on sport field. I play taekwondo and participate many competition. I really enjoy participating in school activities; I not only make many friends and have lots of fun but also gain many different valuable experiences.
-    Now, I'm major in Computer Science & Information Engineering.The e-commerce has changed our traditional lifestyle. Take myself as an example, I keep in touch with my friends through social media, I shop from many websites and I search information from the searching engine.
-    Beyond doubt, the importance of the e-era has brought most powerful revolution to the business world. Banks and stock market transaction through the net, business to business direct transaction through the net and the space and time limitation no longer exist. I am fascinated with the new change and eager to take part in it. So I have decided to study in CSIE. I want to be a professional computer programmer who creates and designs the software to meet the needs of people in e-era.
-    </p>
-    <hr>
-    <h2>education</h2>
-    <p><i><u><b>Yong Chun Elementary School</b></u></i></p>
-    <p><i><u><b>Mingdao High School</b></u></i></p>
-    <hr>
-    <h2>certificate</h2>
-    <p><i><u><b>class C skill category of Industrial</b></u></i></p>
-    <p><i><u><b>class C skill category of Computer Maintenance</b></u></i></p>
+<map name="photomap">
+  <area shape="poly" coords="350,360,787,387,814,807,644,1008,492,1008,325,857" alt="Croissant" href="home.html">
+</map>
 
-  </div>
-</div>
 </body>
-
 </html>
