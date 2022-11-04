@@ -1,0 +1,21 @@
+
+table {
+  border:1px solid black;
+  width:200px;
+  text-align: center;
+  background-color: #EAE671;
+}
+th{
+  border:1px solid black;
+  background-color:#337FC9;
+  color: white;
+}
+td{
+  border:1px solid black;
+  background-color:#EAE671;
+}
+
+button {
+     width: 50px;
+     height: 20px;
+}
