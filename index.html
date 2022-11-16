@@ -1,69 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
-.container {
-  position: relative;
-  width: 50%;
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
 }
-
-.image {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.container:hover .image {
-  opacity: 1;
-}
-
-.container:hover .middle {
-  opacity: 0.5;
-}
-
-.text {
-  background-color: white;
-  color: black;
-  font-size: 16px;
-  padding: 16px 32px;
-}
-
-img {
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
 </style>
 </head>
-<body>
+<body onload="startGame()">
+<script>
 
-<div class="container">
-  <img src="photo.png" alt="photo" usemap="#photomap" class="image" style="width:250px">
-  <div class="middle">
-    <div class="text">I am Tsai-Yun-You</div>
-  </div>
-</div>
+var redGamePiece, blueGamePiece, yellowGamePiece;
 
-<map name="photomap">
-  <area shape="poly" coords="350,360,787,387,814,807,644,1008,492,1008,325,857" alt="Croissant" href="home.html">
-</map>
+function startGame() {
+    redGamePiece = new component(75, 75, "red", 10, 10);
+    yellowGamePiece = new component(75, 75, "yellow", 50, 60);
+    blueGamePiece = new component(75, 75, "blue", 10, 160);
+    redGamePiece.xspeed=1;
+    yellowGamePiece.xspeed=1;
+    yellowGamePiece.yspeed=-1;
+    blueGamePiece.xspeed=1;
+    blueGamePiece.yspeed=1;
+    myGameArea.start();
+}
 
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.xspeed;
+    this.yspeed;
+    this.update = function(){
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+function bounce(){
+    if(redGamePiece.x == 405 || redGamePiece.x == 0){
+      redGamePiece.xspeed*=-1;
+    }
+    if(blueGamePiece.x == 405 || blueGamePiece.x == 0){
+      blueGamePiece.xspeed*=-1;
+    }
+    if(yellowGamePiece.x == 405 || yellowGamePiece.x == 0){
+      yellowGamePiece.xspeed*=-1;
+    }
+    if(blueGamePiece.y == 195 || blueGamePiece.y == 0){
+      blueGamePiece.yspeed*=-1;
+    }
+    if(yellowGamePiece.y == 195 || yellowGamePiece.y == 0){
+      yellowGamePiece.yspeed*=-1;
+    }
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    bounce();
+    redGamePiece.x += redGamePiece.xspeed;
+    yellowGamePiece.x += yellowGamePiece.xspeed;
+    yellowGamePiece.y += yellowGamePiece.yspeed;
+    blueGamePiece.x += blueGamePiece.xspeed;
+    blueGamePiece.y += blueGamePiece.yspeed;
+    redGamePiece.update();
+    yellowGamePiece.update();
+    blueGamePiece.update();
+}
+</script>
+<p>The three components moves by changing the x- and y-coordinates on every update.</p>
 </body>
 </html>
